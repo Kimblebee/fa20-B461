@@ -1,0 +1,224 @@
+
+Problem 1.1
+  id  |  ename   |     city     |  cname  | salary 
+------+----------+--------------+---------+--------
+ 1001 | Jean     | Bloomington  | Apple   |  60000
+ 1002 | Vidya    | Indianapolis | Apple   |  45000
+ 1003 | Anna     | Chicago      | Amazon  |  55000
+ 1004 | Qin      | Denver       | Amazon  |  55000
+ 1005 | Aya      | Chicago      | Google  |  60000
+ 1006 | Ryan     | Chicago      | Amazon  |  55000
+ 1007 | Danielle | Indianapolis | Netflix |  50000
+ 1008 | Emma     | Bloomington  | Amazon  |  50000
+ 1009 | Hasan    | Bloomington  | Apple   |  60000
+ 1010 | Linda    | Chicago      | Amazon  |  55000
+ 1011 | Nick     | NewYork      | Google  |  55000
+ 1012 | Eric     | Indianapolis | Apple   |  50000
+ 1013 | Lisa     | Indianapolis | Netflix |  55000
+ 1014 | Deepa    | Bloomington  | Apple   |  50000
+ 1015 | Chris    | Denver       | Amazon  |  60000
+ 1016 | YinYue   | Chicago      | Amazon  |  55000
+ 1017 | Latha    | Indianapolis | Netflix |  60000
+ 1018 | Arif     | Bloomington  | Apple   |  50000
+(18 rows)
+
+   cname   |     city     
+-----------+--------------
+ Apple     | Bloomington
+ Amazon    | Chicago
+ Amazon    | Denver
+ Amazon    | Columbus
+ Google    | NewYork
+ Netflix   | Indianapolis
+ Netflix   | Chicago
+ Microsoft | Bloomington
+(8 rows)
+
+  id  |      skill       
+------+------------------
+ 1001 | Programming
+ 1001 | AI
+ 1002 | Programming
+ 1002 | AI
+ 1004 | AI
+ 1004 | Programming
+ 1005 | AI
+ 1005 | Programming
+ 1005 | Networks
+ 1006 | Programming
+ 1006 | OperatingSystems
+ 1007 | OperatingSystems
+ 1007 | Programming
+ 1008 | Programming
+ 1009 | OperatingSystems
+ 1009 | Networks
+ 1010 | Networks
+ 1011 | Networks
+ 1011 | OperatingSystems
+ 1011 | AI
+ 1011 | Programming
+ 1012 | AI
+ 1012 | OperatingSystems
+ 1012 | Programming
+ 1013 | Programming
+ 1013 | AI
+ 1013 | OperatingSystems
+ 1013 | Networks
+ 1014 | OperatingSystems
+ 1014 | AI
+ 1014 | Programming
+ 1014 | Networks
+ 1015 | Programming
+ 1015 | AI
+ 1016 | Programming
+ 1016 | OperatingSystems
+ 1016 | AI
+ 1017 | Networks
+ 1017 | Programming
+ 1018 | AI
+(40 rows)
+
+ mid  | eid  
+------+------
+ 1001 | 1002
+ 1001 | 1009
+ 1001 | 1012
+ 1009 | 1018
+ 1009 | 1014
+ 1012 | 1014
+ 1003 | 1004
+ 1003 | 1006
+ 1003 | 1015
+ 1015 | 1016
+ 1006 | 1008
+ 1006 | 1016
+ 1016 | 1010
+ 1005 | 1011
+ 1013 | 1007
+ 1013 | 1017
+(16 rows)
+
+
+Problem 2.1
+  id  |  ename   | salary 
+------+----------+--------
+ 1002 | Vidya    |  45000
+ 1007 | Danielle |  50000
+ 1012 | Eric     |  50000
+(3 rows)
+
+Problem 2.2
+ id | ename 
+----+-------
+(0 rows)
+
+If we change the query slightly by changing it to the query
+    Find the id and name of each employee who works in a city located in
+    Chicago and who has a manager who lives in Chicago
+then we get the following output
+    
+  id  | ename  
+------+--------
+ 1004 | Qin
+ 1006 | Ryan
+ 1008 | Emma
+ 1010 | Linda
+ 1015 | Chris
+ 1016 | YinYue
+(6 rows)
+
+Problem 2.3
+  id  |  ename   
+------+----------
+ 1006 | Ryan
+ 1007 | Danielle
+ 1009 | Hasan
+ 1010 | Linda
+ 1014 | Deepa
+ 1016 | YinYue
+ 1017 | Latha
+ 1018 | Arif
+(8 rows)
+
+Problem 2.4
+  id  | ename  
+------+--------
+ 1005 | Aya
+ 1011 | Nick
+ 1012 | Eric
+ 1013 | Lisa
+ 1014 | Deepa
+ 1016 | YinYue
+(6 rows)
+
+Problem 2.5
+  id  | ename | salary 
+------+-------+--------
+ 1001 | Jean  |  60000
+ 1003 | Anna  |  55000
+(2 rows)
+
+Problem 2.6
+ eid  | eid  
+------+------
+ 1002 | 1009
+ 1002 | 1012
+ 1004 | 1006
+ 1004 | 1015
+ 1006 | 1004
+ 1006 | 1015
+ 1007 | 1017
+ 1008 | 1016
+ 1009 | 1002
+ 1009 | 1012
+ 1012 | 1002
+ 1012 | 1009
+ 1014 | 1018
+ 1015 | 1004
+ 1015 | 1006
+ 1016 | 1008
+ 1017 | 1007
+ 1018 | 1014
+(18 rows)
+
+Problem 2.7
+   cname   
+-----------
+ Google
+ Microsoft
+ Netflix
+(3 rows)
+
+Problem 2.8
+  cname  |  id  
+---------+------
+ Amazon  | 1015
+ Apple   | 1001
+ Apple   | 1009
+ Google  | 1005
+ Netflix | 1017
+(5 rows)
+
+Problem 2.9
+  id  | ename 
+------+-------
+ 1001 | Jean
+ 1003 | Anna
+ 1004 | Qin
+ 1005 | Aya
+ 1006 | Ryan
+ 1009 | Hasan
+ 1010 | Linda
+ 1013 | Lisa
+ 1015 | Chris
+ 1017 | Latha
+(10 rows)
+
+Problem 2.10
+  id  | ename  
+------+--------
+ 1003 | Anna
+ 1016 | YinYue
+(2 rows)
+
+
