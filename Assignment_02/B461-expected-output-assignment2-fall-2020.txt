@@ -1,0 +1,501 @@
+CREATE DATABASE
+CREATE TABLE
+INSERT 0 30
+CREATE TABLE
+INSERT 0 100
+CREATE TABLE
+INSERT 0 25
+CREATE TABLE
+INSERT 0 30
+CREATE TABLE
+INSERT 0 5
+CREATE TABLE
+INSERT 0 60
+Problem 1.1
+Problem 1.1.a
+ pid | name  
+-----+-------
+  12 | Deepa
+  17 | Lisa
+  18 | Ryan
+  24 | Aya
+(4 rows)
+
+Problem 1.1.b
+ pid | name  
+-----+-------
+  12 | Deepa
+  17 | Lisa
+  18 | Ryan
+  24 | Aya
+(4 rows)
+
+Problem 1.1.c
+ pid | name  
+-----+-------
+  12 | Deepa
+  17 | Lisa
+  18 | Ryan
+  24 | Aya
+(4 rows)
+
+Problem 1.1.d
+ pid | name  
+-----+-------
+  12 | Deepa
+  17 | Lisa
+  18 | Ryan
+  24 | Aya
+(4 rows)
+
+Problem 1.2
+Problem 1.2.a
+ pid | name 
+-----+------
+   8 | Jean
+  16 | Anna
+  18 | Ryan
+  21 | Eric
+  25 | Arif
+  30 | Aya
+(6 rows)
+
+Problem 1.2.b
+ pid | name 
+-----+------
+   8 | Jean
+  16 | Anna
+  18 | Ryan
+  21 | Eric
+  25 | Arif
+  30 | Aya
+(6 rows)
+
+Problem 1.2.c
+ pid | name 
+-----+------
+   8 | Jean
+  16 | Anna
+  18 | Ryan
+  21 | Eric
+  25 | Arif
+  30 | Aya
+(6 rows)
+
+Problem 1.2.d
+ pid | name 
+-----+------
+   8 | Jean
+  16 | Anna
+  18 | Ryan
+  21 | Eric
+  25 | Arif
+  30 | Aya
+(6 rows)
+
+Problem 1.3
+Problem 1.3.a
+   cname   
+-----------
+ Apple
+ Google
+ Hulu
+ IBM
+ Intel
+ Microsoft
+ Netflix
+(7 rows)
+
+Problem 1.3.b
+   cname   
+-----------
+ Apple
+ Google
+ Hulu
+ IBM
+ Intel
+ Microsoft
+ Netflix
+(7 rows)
+
+Problem 1.3.c
+   cname   
+-----------
+ Apple
+ Google
+ Hulu
+ IBM
+ Intel
+ Microsoft
+ Netflix
+(7 rows)
+
+Problem 1.4
+Problem 1.4.a
+ pid | name 
+-----+------
+   1 | Nick
+(1 row)
+
+Problem 1.4.b
+ pid | name 
+-----+------
+   1 | Nick
+(1 row)
+
+Problem 1.5
+   cname   | pid | name  
+-----------+-----+-------
+ Amazon    |   3 | Eric
+ Amazon    |  18 | Ryan
+ Apple     |  16 | Anna
+ Google    |  29 | Linda
+ Hulu      |   2 | Deepa
+ Hulu      |  25 | Arif
+ IBM       |   6 | Arif
+ IBM       |   7 | Ryan
+ IBM       |  14 | Ryan
+ Intel     |  21 | Eric
+ Intel     |  26 | Anna
+ Microsoft |   4 | Ryan
+ Netflix   |  12 | Deepa
+(13 rows)
+
+Problem 1.6
+ pid 
+-----
+   2
+   8
+   9
+  21
+  23
+(5 rows)
+
+Problem 1.7
+    skill    
+-------------
+ Mathematics
+ Networks
+(2 rows)
+
+Problem 1.8
+    skill    |    skill    
+-------------+-------------
+ Programming | Programming
+ Databases   | Databases
+ AI          | AI
+ Networks    | Networks
+ Mathematics | Mathematics
+(5 rows)
+
+Problem 2.1
+Problem 2.1.a
+CREATE VIEW
+ pid |   name   |     city     | birthyear 
+-----+----------+--------------+-----------
+   1 | Nick     | NewYork      |      1990
+   4 | Ryan     | Indianapolis |      1995
+  12 | Deepa    | Bloomington  |      1990
+  16 | Anna     | Chicago      |      1980
+  20 | Danielle | Indianapolis |      1985
+  21 | Eric     | Chicago      |      1980
+  26 | Anna     | Bloomington  |      2000
+  29 | Linda    | Bloomington  |      1990
+  30 | Aya      | NewYork      |      1995
+(9 rows)
+
+Problem 2.1.b
+CREATE VIEW
+ pid 
+-----
+   1
+   6
+   7
+  14
+  15
+  22
+(6 rows)
+
+Problem 2.1.c
+ pid | name 
+-----+------
+  16 | Anna
+(1 row)
+
+Problem 2.2
+Problem 2.2.a
+CREATE FUNCTION
+Salary above 30000
+ pid |   name   |     city     | birthyear 
+-----+----------+--------------+-----------
+   1 | Nick     | NewYork      |      1990
+   2 | Deepa    | Indianapolis |      1985
+   3 | Eric     | NewYork      |      1990
+   4 | Ryan     | Indianapolis |      1995
+   5 | Hasan    | Indianapolis |      1990
+   6 | Arif     | Indianapolis |      1980
+   7 | Ryan     | Chicago      |      1980
+   8 | Jean     | SanFransisco |      2000
+   9 | Aya      | SanFransisco |      1985
+  10 | Lisa     | NewYork      |      2000
+  11 | Arif     | Chicago      |      1990
+  12 | Deepa    | Bloomington  |      1990
+  13 | Nick     | SanFransisco |      1980
+  14 | Ryan     | Indianapolis |      1990
+  15 | Nick     | Indianapolis |      1990
+  16 | Anna     | Chicago      |      1980
+  17 | Lisa     | Bloomington  |      1990
+  18 | Ryan     | Bloomington  |      1995
+  19 | Lisa     | Chicago      |      1980
+  20 | Danielle | Indianapolis |      1985
+  21 | Eric     | Chicago      |      1980
+  22 | Anna     | Indianapolis |      1985
+  23 | Chris    | Bloomington  |      1990
+  24 | Aya      | NewYork      |      1995
+  25 | Arif     | SanFransisco |      1990
+  26 | Anna     | Bloomington  |      2000
+  27 | Latha    | SanFransisco |      2000
+  28 | Eric     | Bloomington  |      2000
+  29 | Linda    | Bloomington  |      1990
+  30 | Aya      | NewYork      |      1995
+(30 rows)
+
+Salary above 50000
+ pid |   name   |     city     | birthyear 
+-----+----------+--------------+-----------
+   1 | Nick     | NewYork      |      1990
+   4 | Ryan     | Indianapolis |      1995
+  12 | Deepa    | Bloomington  |      1990
+  16 | Anna     | Chicago      |      1980
+  20 | Danielle | Indianapolis |      1985
+  21 | Eric     | Chicago      |      1980
+  26 | Anna     | Bloomington  |      2000
+  29 | Linda    | Bloomington  |      1990
+  30 | Aya      | NewYork      |      1995
+(9 rows)
+
+Salary above 70000
+ pid | name | city | birthyear 
+-----+------+------+-----------
+(0 rows)
+
+Problem 2.2.b
+CREATE FUNCTION
+Person who knows employee at Yahoo
+ pid 
+-----
+   1
+   4
+   7
+(3 rows)
+
+Person who knows employee at Google
+ pid 
+-----
+   8
+  14
+  16
+  18
+  21
+  24
+  25
+  30
+(8 rows)
+
+Person who knows employee at Amazon
+ pid 
+-----
+   1
+   4
+   6
+  10
+  12
+  13
+  14
+  16
+  24
+  26
+  27
+  30
+(12 rows)
+
+Problem 2.2.c
+ salary |   cname   | pid 
+--------+-----------+-----
+  40000 | IBM       |   1
+  40000 | IBM       |  14
+  40000 | Microsoft |   4
+  40000 | Microsoft |  20
+  40000 | Netflix   |  12
+  40000 | Intel     |  26
+  40000 | Intel     |  27
+  40000 | Intel     |  28
+  40000 | Intel     |  30
+  40000 | Zoom      |  19
+  40000 | Amazon    |   3
+  40000 | Amazon    |  18
+  40000 | Google    |  17
+  40000 | Google    |  24
+  40000 | Google    |  29
+  50000 | IBM       |   1
+  50000 | Apple     |  16
+  50000 | Microsoft |   4
+  50000 | Microsoft |  20
+  50000 | Netflix   |  12
+  50000 | Intel     |  26
+  50000 | Intel     |  30
+  50000 | Google    |  29
+  55000 | IBM       |   1
+  55000 | Microsoft |   4
+  55000 | Intel     |  30
+  55000 | Google    |  29
+  45000 | IBM       |   1
+  45000 | IBM       |   6
+  45000 | IBM       |  14
+  45000 | Apple     |  16
+  45000 | Microsoft |   4
+  45000 | Microsoft |  20
+  45000 | Netflix   |  12
+  45000 | Intel     |  26
+  45000 | Intel     |  27
+  45000 | Intel     |  28
+  45000 | Intel     |  30
+  45000 | Google    |  29
+  45000 | Hulu      |  25
+(40 rows)
+
+Problem 3.1
+CREATE TABLE
+INSERT 0 5
+ x |  square_root_x   | x_squared | two_to_the_power_x | x_factorial |    logarithm_x    
+---+------------------+-----------+--------------------+-------------+-------------------
+ 1 |                1 |         1 |                  2 |           1 |                 0
+ 2 |  1.4142135623731 |         4 |                  4 |           2 | 0.693147180559945
+ 3 | 1.73205080756888 |         9 |                  8 |           6 |  1.09861228866811
+ 4 |                2 |        16 |                 16 |          24 |  1.38629436111989
+ 5 | 2.23606797749979 |        25 |                 32 |         120 |   1.6094379124341
+(5 rows)
+
+DROP TABLE
+Problem 3.2
+Problem 3.2.a
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+Problem 3.2.a
+INSERT 0 2
+INSERT 0 3
+insert into A values (1),(2);
+insert into B values (1),(3),(5);
+ answer 
+--------
+ t
+(1 row)
+
+ answer 
+--------
+ t
+(1 row)
+
+DELETE 2
+DELETE 3
+INSERT 0 2
+INSERT 0 2
+insert into A values (1),(2);
+insert into B values (3),(5);
+ answer 
+--------
+ f
+(1 row)
+
+ answer 
+--------
+ f
+(1 row)
+
+Problem 3.2.b
+DELETE 2
+DELETE 2
+INSERT 0 2
+INSERT 0 3
+insert into A values (1),(2);
+insert into B values (1),(2),(3);
+ answer 
+--------
+ t
+(1 row)
+
+ answer 
+--------
+ t
+(1 row)
+
+DELETE 2
+DELETE 3
+INSERT 0 2
+INSERT 0 2
+insert into A values (1),(2);
+insert into B values (2),(3);
+ answer 
+--------
+ f
+(1 row)
+
+ answer 
+--------
+ f
+(1 row)
+
+Problem 3.2.c
+DELETE 2
+DELETE 2
+DELETE 0
+INSERT 0 2
+INSERT 0 2
+INSERT 0 3
+insert into A values (1),(2);
+insert into B values (2),(3);
+insert into C values (1),(2),(3);
+ answer 
+--------
+ t
+(1 row)
+
+ answer 
+--------
+ t
+(1 row)
+
+DELETE 2
+DELETE 2
+DELETE 3
+INSERT 0 2
+INSERT 0 2
+INSERT 0 3
+insert into A values (1),(2);
+insert into B values (2),(3);
+insert into C values (1),(2),(4);
+ answer 
+--------
+ f
+(1 row)
+
+ answer 
+--------
+ f
+(1 row)
+
+Problem 3.3
+Problem 3.3.a
+ answer 
+--------
+ f
+(1 row)
+
+Problem 3.3.b
+ answer 
+--------
+ f
+(1 row)
+
+DROP DATABASE
