@@ -3,10 +3,13 @@
 worked with:
 michael abbott
 Zunaeed S
+jackson ennis
+Matthew Geborek
 */
 -- Section 1
 
 --\qecho "question 1.1.a"
+
 
 select DISTINCT p1.name, p1.pid
 FROM Person p1, person p2, knows k, Company c, worksfor w
@@ -19,6 +22,8 @@ where k.pid1 = p1.pid
 ORDER BY pid;
 
 -- 1.1.b
+\qecho '1.1.b'
+
 select DISTINCT p1.name, p1.pid
 FROM Person p1, person p2, knows k, Company c, worksfor w
 where k.pid1 = p1.pid
@@ -30,6 +35,8 @@ where k.pid1 = p1.pid
 ORDER BY pid;
 
 --1.1.c using some/all
+\qecho '1.1.c'
+
 select DISTINCT p1.name, p1.pid
 FROM Person p1, person p2, knows k, Company c, worksfor w
 where k.pid1 = p1.pid
@@ -43,6 +50,7 @@ where k.pid1 = p1.pid
 ORDER BY pid;
 
 -- 1.1.d
+\qecho '1.1.d'
 SELECT DISTINCT p1.pid, p1.name
 FROM person p1, knows k, person p2
 WHERE p1.pid = k.pid1 AND p2.pid = k.pid2 AND p2.city = 'Chicago' AND EXISTS (SELECT w.pid
@@ -54,6 +62,7 @@ WHERE p1.pid = k.pid1 AND p2.pid = k.pid2 AND p2.city = 'Chicago' AND EXISTS (SE
 
 
 -- 1.2.a
+\qecho '1.2.a'
 -- find pid and name of some1 who:
 -- know someone who works at googles
 -- does NOT know someone who works at amazons
@@ -76,10 +85,75 @@ ORDER BY pid;
 
 -- 1.2.b
 -- SELECT DISTINCT p1.pid, p1.name 
+\qecho '1.2.b'
+
+    SELECT DISTINCT p1.pid, p1.name
+    FROM person p1, knows k, person p2, Company c, worksfor w
+    --...
+    WHERE k.pid1 = p1.pid and k.pid2 = p2.pid and w.pid = p2.pid and w.cname = 'Google'
+
+EXCEPT
+    (SELECT pa.pid, pa.name
+    FROM person pa, knows ka, person pb, worksfor wa, personskill s
+    WHERE ka.pid1 = pa.pid AND ka.pid2 = pb.pid
+        AND s.pid = pb.pid
+        AND s.skill = 'Programming'
+        AND wa.pid = pb.pid
+        AND wa.cname = 'Amazon' )
+ORDER BY pid;
+
+-- 1.2.c
+\qecho '1.2.c'
+
+    SELECT DISTINCT p1.pid, p1.name
+    FROM person p1, knows k, person p2, Company c, worksfor w
+    --...
+    WHERE k.pid1 = p1.pid and k.pid2 = p2.pid and w.pid = p2.pid and w.cname = 'Google'
+
+EXCEPT
+    (SELECT pa.pid, pa.name
+    FROM person pa, knows ka, person pb, worksfor wa, personskill s
+    WHERE ka.pid1 = pa.pid AND ka.pid2 = pb.pid
+        AND s.pid = pb.pid
+        AND s.skill = 'Programming'
+        AND wa.pid = pb.pid
+        AND wa.cname = 'Amazon' )
+ORDER BY pid;
+
+
+-- 1.3.a
+\qecho '1.3.a'
+SELECT distinct c.cname
+FROM company c, worksfor w1, worksfor w2, personskill ps1, personskill ps2, person p1, person p2
+WHERE p1.pid = ps1.pid
+    AND p2.pid = ps2.pid
+    AND w1.pid = p1.pid
+    AND w2.pid = p2.pid
+    AND p1.pid != p2.pid
+    AND w1.cname = c.cname
+    AND w2.cname = c.cname
+    AND ps1.skill = ps2.skill;
+
+--1.3.b
+\qecho '1.3.b'
+SELECT DISTINCT c.cname
+FROM company c
+WHERE c.cname IN (SELECT c1.cname
+FROM company c1, person p1, person p2, personskill ps1, personskill ps2, worksfor wf1, worksfor wf2
+WHERE p1.pid != p2.pid AND p1.pid = wf1.pid AND wf1.cname = c1.cname AND p2.pid = wf2.pid AND wf2.cname = c1.cname AND ps1.pid = p1.pid AND ps2.pid = p2.pid AND ps1.skill = ps2.skill);
+
+\qecho '1.3.c'
+
+SELECT DISTINCT c.cname
+from company c, person p1, person p2
+WHERE p1.pid != p2.pid AND EXISTS( SELECT c1.cname
+    FROM company c1, personskill ps1, personskill ps2, worksfor wf1, worksfor wf2
+    WHERE p1.pid = wf1.pid AND wf1.cname = c.cname AND p2.pid = wf2.pid AND wf2.cname = c.cname AND ps1.pid = p1.pid AND ps2.pid = p2.pid AND ps1.skill = ps2.skill);
 
 
 
 -- 1.4.a
+
 \qecho '1.4.a'
 Select DISTINCT p1.pid, p1.name
 FROM person p1, worksfor w, personskill ps
@@ -120,6 +194,7 @@ WHERE p1.pid = w.pid and w.cname = c.cname and w.salary  in
         where w2.cname = c.cname) 
         )z
 );
+
 
 
 -- 1.6
@@ -272,7 +347,7 @@ FROM KnowsEmployeeAtCompany('Amazon') c;
 
 --2.2.c
 
-
+\qecho 'Problem 2.2.c'
 SELECT DISTINCT w2.salary, c.cname, p.pid
 FROM worksfor w, company c, person p, company c1, worksfor w2
 WHERE p.pid = w.pid
@@ -286,32 +361,88 @@ WHERE p.pid = w.pid
         FROM SalaryAbove(w2.salary)t));
 
 
-/*
-Select w.salary, w.cname, p1.pid
-FROM person p1, worksfor w, worksfor w2, company c
-WHERE p1.pid = w2.pid and w2.cname = w.cname
-    and  
+\qecho 'Problem 3.1'
+Drop TABLE IF EXISTS vals;
+
+create table vals
+(
+    number INTEGER
+);
+insert into vals
+values
+    (1),
+    (2),
+    (3),
+    (4),
+    (5);
+
+Select v.number as x, sqrt(v.number) as sqrt_x, power(v.number, 2) as squared_x, power(2, v.number) as two_to_the_power_x, factorial(v.number) as x_factorial,
+    log(v.number) as log_x
+FROM vals v;
 
 
-*/
+DROP TABLE IF EXISTS A;
+DROP TABLE IF EXISTS B;
+DROP TABLE IF EXISTS c;
 
-/*
-Select DISTINCT w1.salary, c.cname, p1.pid
-FROM worksfor w1, company c, company c2, person p1, worksfor w2
-WHERE p1.pid in (Select sa.pid
-    FROM SalaryAbove(w1.salary) sa)
-    AND p1.pid = w2.pid and w2.cname = c.cname
+create table A
+(
+    numbera INTEGER
+);
+create table B
+(
+    numberb INTEGER
+);
+create table C
+(
+    numberc INTEGER
+);
 
-    AND p1.pid in 
-        (select kn.pid
-    from KnowsEmployeeAtCompany(c2.cname)kn
-    WHERE 
-     c2.cname != c.cname
-        AND kn.pid not in (Select sa2.pid
-        from SalaryAbove(w2.salary) sa2));
-*/
-/*
-SELECT DISTINCT w2.salary, c1.name, p.pid 
-FROM worksfor w1, worksfor w2, company c1, company c2, person p 
-WHERE p.pid = w1.pid and w1.cname = c1.cname AND p.pid 
-*/
+insert into A
+values
+    (1),
+    (2);
+
+insert into B
+values
+    (1),
+    (4),
+    (5);
+
+-- 3.2.a
+\qecho '3.2.a'
+SELECT EXISTS
+    (
+        SELECT *
+    FROM A
+INTERSECT
+    SELECT *
+    FROM B);
+
+
+-- 3.2.b
+\qecho '3.2.b'
+INSERT INTO B
+VALUES
+    (2);
+
+SELECT NOT EXISTS
+    (
+        SELECT *
+    FROM A
+INTERSECT
+    (
+        SELECT *
+    FROM a
+INTERSECT
+    SELECT *
+    FROM b)
+);
+
+
+\qecho '3.3a'
+SELECT NOT EXISTS
+(SELECT p.pid
+FROM person p, personskill ps1, personskill ps2
+WHERE p.pid = ps1.pid AND p.pid = ps2.pid AND ps1.skill = ps2.skill)
+AS answer; 
