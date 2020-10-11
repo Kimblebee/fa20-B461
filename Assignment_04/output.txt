@@ -1,0 +1,98 @@
+Problem 1
+pid
+-----
+  12
+  17
+  18
+  24
+(4 rows)
+
+
+Problem 2
+    skill
+-------------
+ Mathematics
+ Networks
+(2 rows)
+
+
+Problem 3
+   cname
+-----------
+ Apple
+ Google
+ Hulu
+ IBM
+ Intel
+ Microsoft
+ Netflix
+(7 rows)
+
+
+Problem 4
+ pid | name
+-----+------
+   8 | Jean
+  16 | Anna
+  18 | Ryan
+  21 | Eric
+  25 | Arif
+  30 | Aya
+(6 rows)
+
+
+Problem 5
+ pid | name
+-----+------
+   1 | Nick
+(1 row)
+
+
+Problem 6
+ pid |   name
+-----+----------
+   1 | Nick
+   2 | Deepa
+   4 | Ryan
+   5 | Hasan
+   6 | Arif
+   7 | Ryan
+   8 | Jean
+   9 | Aya
+  10 | Lisa
+  11 | Arif
+  14 | Ryan
+  15 | Nick
+  16 | Anna
+  17 | Lisa
+  18 | Ryan
+  20 | Danielle
+  22 | Anna
+  23 | Chris
+  25 | Arif
+  26 | Anna
+  27 | Latha
+  29 | Linda
+  30 | Aya
+(23 rows)
+
+
+problem 7
+ cname
+--------
+ Amazon
+ Hulu
+ Yahoo
+ Zoom
+(4 rows)
+
+
+Problem 8
+    skill    |    skill
+-------------+-------------
+ Databases   | Databases
+ AI          | AI
+ Mathematics | Mathematics
+ Networks    | Networks
+ Programming | Programming
+(5 rows)
