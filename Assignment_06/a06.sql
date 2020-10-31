@@ -1,6 +1,11 @@
 -- worked with will boland, kenjie moore, zunaeed salahuddin, jackson ennis, michael abbott
 --
-
+create or replace function setdifference(A anyarray, B anyarray)
+returns anyarray as
+$$
+select array( select unnest(A) except select unnest(B) order by 1);
+$$ language sql;
+--
 create or replace function setintersection(A anyarray, B anyarray)
 returns anyarray as
 $$
@@ -41,7 +46,7 @@ select distinct cl.city, array(select distinct c.cname
                                 where cl2.cname = c.cname and cl2.city = cl.city) as companies
                                 from companyLocation cl
                                 order by city;
- --   select * from cityHasCompany;
+  select * from cityHasCompany;
 
 \qecho "Question 1.b"
 drop view if exists companyLocations;
@@ -51,7 +56,7 @@ select distinct c.cname, array(select distinct cl.city
                                 where cl.cname = c.cname) as locations
                                 from company c
                                 order by cname;
-  --  select * from companyLocations;
+select * from companyLocations;
     
 \qecho "Question 1.c"
 drop view if exists knowsPersons;
@@ -62,7 +67,7 @@ select distinct p1.pid, array(select distinct k.pid2
                                 order by pid2) as persons
         from person p1
         order by pid;
- --   select * from knowsPersons;
+select * from knowsPersons;
 \qecho "Question 1.d"
 drop view if exists isKnownByPersons;
 create or replace view isKnownByPersons as
@@ -72,7 +77,7 @@ select distinct p1.pid, array(select distinct k.pid1
                                 order by pid1) as persons
         from person p1
         order by pid;
-  --  select * from isKnownByPersons;
+select * from isKnownByPersons;
 
 
 
@@ -84,7 +89,7 @@ create or replace view personHasSkills as
 								order by ps.skill) AS skills
 	from Person p
 	order by p.pid;
---select * from personHasSkills;
+select * from personHasSkills;
 
 \qecho "Question 1.f"
 create or replace view skillOfPersons as
@@ -94,7 +99,7 @@ create or replace view skillOfPersons as
 										order by ps.pid) AS persons
 	from jobskill js
 	order by js.skill;
--- select * from skillOfPersons;
+ select * from skillOfPersons;
 
 -- CANNOT USE Knows, companyLocation, personSkill
 -- CAN USE person, company, jobSkill, worksFor, 
@@ -159,22 +164,9 @@ select p1.pid, p1.name, array(select distinct p2.pid
                                                 from person p1;
 
 \qecho "question 2.h"
-select something idk
-from 
-
-\qecho "question 2.i"
-/*
-create or replace view companySkills as
-	select ARRAY(select distinct unnest(phs.skills) as skills 
-                  from WorksFor wf, personHasSkills phs 
-                  where (wf.cname = 'Amazon' or wf.cname = 'Google') 
-                  and phs.pid = wf.pid) as skills;
-
-select phs.pid, setIntersection(ds.skills, phs.skills) 
-from companySkills as cs, personHasSkills phs 
-order by phs.pid
-*/
-
+select count(1) from(select distinct p1.pid, p2.pid
+                  from isknownbypersons p1, knowspersons p2 
+                  where cardinality(setdifference(p1.persons, p2.persons)) >0) as lol;
 
 
 
@@ -188,34 +180,6 @@ FROM worksfor wf, personHasSkills phs
 WHERE (wf.cname = 'Amazon' OR wf.cname = 'Google') AND phs.pid = wf.pid) as skills), phs.skills)
 FROM personHasSkills phs; 
 
-
-
-
-
-
-
-
-
-
-
-/*
-create or replace view desiredPeople as
-	select distinct pid FROM WorksFor WHERE (cname = 'Amazon' OR cname = 'Google');
-								 
-
-SELECT dp.pid, (SELECT skills FROM personHasSkills as phs WHERE dp.pid = phs.pid) FROM desiredPeople dp
-
-
-select distinct ps1.pid, ps1.skills
-from personhasskills ps1, companyEmployees c
-where (c.cname = 'Amazon' or c.cname = 'Google') and isIn(ps1.pid,c.employees);
-
-
-
-select distinct sop.skills from 
-person p, worksfor w, skillOfPersons sop 
-where w.pid = p.pid and isIn(p.pid, sop.persons) and (w.cname = 'Amazon' or w.cname = 'Google')
-*/
 
 
 
