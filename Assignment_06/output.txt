@@ -1,4 +1,4 @@
-CREATE FUNCTION
+REATE FUNCTION
 CREATE FUNCTION
 CREATE FUNCTION
 CREATE FUNCTION
@@ -188,13 +188,7 @@ CREATE VIEW
 (6 rows)
 
 
-"question 2.c" -- FIXIT
-   skill
-------------
- Algorithms
-(1 row)
-
-
+"question 2.c"
 question 2.d
    unnest
 ------------
@@ -280,10 +274,6 @@ question 2.d
 
 
 question 2.i
-                    skills
-----------------------------------------------
- {Databases,Mathematics,Networks,Programming}
-(1 row)
 
 
  pid |          setintersection

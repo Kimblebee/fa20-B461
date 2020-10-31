@@ -1,4 +1,4 @@
--- worked with will boland, kenjie moore, zunaeed salahuddin, jackson ennis, michael abbott
+-- worked with will boland, kenjie moore, zunaeed salahuddin, jackson ennis, michael abbott, 
 --
 create or replace function setdifference(A anyarray, B anyarray)
 returns anyarray as
@@ -127,11 +127,13 @@ select distinct p.pid, p.name
                       and  w.salary <= 40000), k.persons)
   order by p.pid;
 
-\qecho "question 2.c" -- FIXIT
-select unnest(setdifference((select array(select distinct ps.skill
-                      from jobSkill ps)), (select array(select distinct ps2.skill 
-                                           from personskill ps2, worksfor w, companyLocation cl
-                                           where ps2.pid = w.pid and w.cname = cl.cname and cl.city = 'Bloomington')))) as skill;
+\qecho "question 2.c" 
+select unnest(setdifference((select array(select distinct js.skill from jobSkill js)), 
+  
+  (select array(select distinct unnest(phs.skills)
+    from personHasSkills phs, worksfor wf, companyLocation c
+    where c.city = 'Bloomington' and phs.pid = wf.pid and wf.cname = c.cname)))) as var\;
+
 
 \qecho 'question 2.d'
 select unnest(setdifference(array(select skill from jobskill), array (select distinct unnest (phs.skills) as skill from worksfor wf, personhasskills phs
@@ -168,13 +170,7 @@ select count(1) from(select distinct p1.pid, p2.pid
                   from isknownbypersons p1, knowspersons p2 
                   where cardinality(setdifference(p1.persons, p2.persons)) >0) as lol;
 
-
-
 \qecho 'question 2.i'
-SELECT ARRAY(SELECT DISTINCT UNNEST(phs.skills) AS skills
-FROM worksfor wf, personHasSkills phs
-WHERE (wf.cname = 'Amazon' OR wf.cname = 'Google') AND phs.pid = wf.pid) as skills;
-
 SELECT DISTINCT phs.pid, setintersection((SELECT ARRAY(SELECT DISTINCT UNNEST(phs.skills) AS skills
 FROM worksfor wf, personHasSkills phs
 WHERE (wf.cname = 'Amazon' OR wf.cname = 'Google') AND phs.pid = wf.pid) as skills), phs.skills)
